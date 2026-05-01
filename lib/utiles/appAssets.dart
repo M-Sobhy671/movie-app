@@ -20,7 +20,7 @@ class Appassets {
   static const String onboarding3 = 'assets/images/onboarding3.png';
   static const String overlay3 = 'assets/images/overlay3.png';
   static const String onboarding4 = 'assets/images/onboarding4.png';
-  static const String overlay4= 'assets/images/overlay4.png'; 
+  static const String overlay4= 'assets/images/overlay4.png';
   static const String onboarding5 = 'assets/images/onboarding5.png';
   static const String overlay5 = 'assets/images/overlay5.png';
   static const String onboarding6= 'assets/images/onboarding6.png';
