@@ -151,7 +151,7 @@ class _ProfileState extends State<Profile> {
           ),
           itemCount: 9,
           itemBuilder: (context, index) {
-            String avatarPath = 'assets/temp_images/avatar_${index + 1}.png';
+            String avatarPath = 'assets/images/avatar_${index + 1}.png';
             return GestureDetector(
               onTap: () {
                 setState(() => selectedAvatar = avatarPath);
