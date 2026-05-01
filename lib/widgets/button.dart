@@ -3,7 +3,7 @@ import 'package:movie_app/utiles/appColors.dart';
 
 class AppButton extends StatelessWidget {
   final String title;
-  final VoidCallback onPressed;
+  final void Function() onPressed;
   final bool isOutlined;
 
   const AppButton({
