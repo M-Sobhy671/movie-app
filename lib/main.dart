@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/splash.dart';
-import 'screens/onBoarding.dart';
+import 'screens/OnBoarding/onBoarding.dart';
 import 'screens/login.dart';
 import 'screens/register.dart';
 import 'screens/forgetPass.dart';
@@ -18,10 +18,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: 'profile',
+      initialRoute: 'splash',
       routes: {
-        'splash' : (context) => Splash(),
-        'onBoarding' : (context) => Onboarding(),
+        'splash' : (context) => SplashView(),
+        'onBoarding' : (context) => Onboarding1(),
         'login' : (context) => Login(),
         'register' : (context) => Register(),
         'forgetPass' : (context) => Forgetpass(),
