@@ -9,9 +9,6 @@ class Onboarding1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
-
-    double h(double value) => height * value;
     double w(double value) => width * value;
 
     return Scaffold(
@@ -54,7 +51,7 @@ class Onboarding1 extends StatelessWidget {
                   ),
                 ),
 
-                SizedBox(height: h(0.025)),
+                SizedBox(height: w(0.06)),
 
                 SizedBox(
                   width: w(0.90),
@@ -71,11 +68,11 @@ class Onboarding1 extends StatelessWidget {
                   ),
                 ),
 
-                SizedBox(height: h(0.035)),
+                SizedBox(height: w(0.08)),
 
                 SizedBox(
                   width: double.infinity,
-                  height: h(0.065),
+                  height: w(0.14),
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.pushReplacement(
@@ -104,7 +101,7 @@ class Onboarding1 extends StatelessWidget {
                   ),
                 ),
 
-                SizedBox(height: h(0.045)),
+                SizedBox(height: w(0.08)),
               ],
             ),
           ),

@@ -9,7 +9,6 @@ class Onboarding4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
-
     double w(double v) => width * v;
 
     return Scaffold(

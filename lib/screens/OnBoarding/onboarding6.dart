@@ -9,7 +9,6 @@ class Onboarding6 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
-
     double w(double v) => width * v;
 
     return Scaffold(
@@ -19,19 +18,13 @@ class Onboarding6 extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             height: double.infinity,
-            child: Image.asset(
-              Appassets.onboarding6,
-              fit: BoxFit.cover,
-            ),
+            child: Image.asset(Appassets.onboarding6, fit: BoxFit.cover),
           ),
 
           SizedBox(
             width: double.infinity,
             height: double.infinity,
-            child: Image.asset(
-              Appassets.overlay6,
-              fit: BoxFit.cover,
-            ),
+            child: Image.asset(Appassets.overlay6, fit: BoxFit.cover),
           ),
 
           Align(
@@ -74,9 +67,7 @@ class Onboarding6 extends StatelessWidget {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(
-                              builder: (context) => Register(),
-                            ),
+                            MaterialPageRoute(builder: (context) => Register()),
                           );
                         },
                         style: ElevatedButton.styleFrom(

@@ -9,8 +9,12 @@ class Onboarding2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
-
     double w(double v) => width * v;
+    //double width(double value) 
+   //return width * value;  هى نفس التانيه 
+   {
+}
+    
 
     return Scaffold(
       backgroundColor: Appcolors.blackColor,
