@@ -67,7 +67,7 @@ class Onboarding6 extends StatelessWidget {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => Register()),
+                            MaterialPageRoute(builder: (context) => RegisterScreen()),
                           );
                         },
                         style: ElevatedButton.styleFrom(

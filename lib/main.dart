@@ -22,8 +22,8 @@ class MyApp extends StatelessWidget {
       routes: {
         'splash' : (context) => SplashView(),
         'onBoarding' : (context) => Onboarding1(),
-        'login' : (context) => Login(),
-        'register' : (context) => Register(),
+        'login' : (context) => LoginScreen(),
+        'register' : (context) => RegisterScreen(),
         'forgetPass' : (context) => Forgetpass(),
         'profile' : (context) => Profile(),
       },
