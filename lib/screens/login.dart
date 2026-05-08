@@ -90,7 +90,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     backgroundColor: Colors.amber,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('profile');
+                  },
                   child: const Text(
                     "Login",
                     style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18),
