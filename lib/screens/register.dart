@@ -162,7 +162,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     style: TextStyle(color: Colors.white, fontSize: 13),
                   ),
                   GestureDetector(
-                    onTap: () => Navigator.pop(context),
+                    onTap: () => Navigator.of(context).pushNamed('login'),
                     child: const Text(
                       "Login",
                       style: TextStyle(
