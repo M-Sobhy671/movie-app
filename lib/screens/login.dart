@@ -201,7 +201,7 @@ class _LoginScreenState extends State<LoginScreen> {
       //todo : show message
       DialogUtils.showMessage(context: context, message: 'Login Successfully',
       posActionName: 'Ok',posAction: (){
-        Navigator.of(context).pushNamed('profile');
+        Navigator.of(context).pushNamed('home');
           });
     } on FirebaseAuthException catch (e) {
       //todo : hide loading
