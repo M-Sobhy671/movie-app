@@ -7,6 +7,7 @@ import 'screens/register.dart';
 import 'screens/forgetPass.dart';
 import 'screens/profile.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: 'splash',
+      initialRoute: 'login',
       routes: {
         'splash' : (context) => SplashView(),
         'onBoarding' : (context) => Onboarding1(),

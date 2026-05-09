@@ -1,5 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/utiles/appAssets.dart';
+import 'package:movie_app/utiles/appColors.dart';
+import 'package:movie_app/utiles/dialog_utils.dart';
+import 'package:movie_app/widgets/builtTextField.dart';
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 
@@ -8,8 +12,18 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+
   bool isArabic = false;
-  bool _obscurePassword = true;
+  bool isObscure = true;
+
+  final _formKey = GlobalKey<FormState>();
+
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmController = TextEditingController();
+  final nameController = TextEditingController();
+  final phoneController = TextEditingController();
+
   bool _obscureConfirm = true;
   int _selectedAvatar = 1;
 
@@ -19,230 +33,220 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Appassets.avatar_2,
 ];
 
-  final List<IconData> _avatarIcons = [
-    Icons.headset_mic,
-    Icons.person,
-    Icons.face,
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF121312),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+      appBar: AppBar(backgroundColor: Appcolors.blackColor,
+              centerTitle: true,
+              leading: Icon(Icons.arrow_back,color: Appcolors.yellowColor,),
+              title: Text('Register',style: TextStyle(
+                color: Appcolors.yellowColor,fontSize:16
+              ),),),
+      backgroundColor:  Appcolors.blackColor,
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Column(
+          children: [
+            const SizedBox(height: 20),
+
+            const SizedBox(height: 20),
+
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(3, (index) {
+                final isSelected = _selectedAvatar == index;
+                return GestureDetector(
+                  onTap: () => setState(() => _selectedAvatar = index),
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 200),
+                    margin: EdgeInsets.symmetric(
+                      horizontal: isSelected ? 8 : 4,
+                    ),
+                    child: Stack(
+                      alignment: Alignment.bottomRight,
+                      children: [
+                        CircleAvatar(
+        radius: isSelected ? 60 : 50,
+        backgroundImage: AssetImage(_avatarImages[index]),
+        backgroundColor: Colors.transparent,
+      ),
+                        if (isSelected)
+                          Container(
+                            width: 16,
+                            height: 16,
+                            decoration: const BoxDecoration(
+                              color: Colors.amber,
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Icon(Icons.check, color: Colors.black, size: 11),
+                          ),
+                      ],
+                    ),
+                  ),
+                );
+              }),
+            ),
+
+            const SizedBox(height: 8),
+            const Text(
+              "Avatar",
+              style: TextStyle(color: Appcolors.whiteColor, fontSize: 16),
+            ),
+
+            const SizedBox(height: 20),
+
+        Form(
+          key: _formKey,
           child: Column(
             children: [
-              const SizedBox(height: 20),
-
-              
-              Row(
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back_ios_new, color: Colors.amber, size: 20),
-                    onPressed: () => Navigator.pop(context),
-                  ),
-                  const Expanded(
-                    child: Center(
-                      child: Text(
-                        "Register",
-                        style: TextStyle(
-                          color: Colors.amber,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 48), 
-                ],
-              ),
-
-              const SizedBox(height: 20),
-
-              
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(3, (index) {
-                  final isSelected = _selectedAvatar == index;
-                  return GestureDetector(
-                    onTap: () => setState(() => _selectedAvatar = index),
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 200),
-                      margin: EdgeInsets.symmetric(
-                        horizontal: isSelected ? 8 : 4,
-                      ),
-                      child: Stack(
-                        alignment: Alignment.bottomRight,
-                        children: [
-                          CircleAvatar(
-  radius: isSelected ? 42 : 32,
-  backgroundImage: AssetImage(_avatarImages[index]),
-  backgroundColor: Colors.transparent,
-),
-                          if (isSelected)
-                            Container(
-                              width: 16,
-                              height: 16,
-                              decoration: const BoxDecoration(
-                                color: Colors.amber,
-                                shape: BoxShape.circle,
-                              ),
-                              child: const Icon(Icons.check, color: Colors.black, size: 11),
-                            ),
-                        ],
-                      ),
-                    ),
-                  );
-                }),
-              ),
-
-              const SizedBox(height: 8),
-              const Text(
-                "Avatar",
-                style: TextStyle(color: Colors.grey, fontSize: 13),
-              ),
-
-              const SizedBox(height: 20),
-
-              
-              _buildField("Name", Icons.badge_outlined),
+              buildTextField('Name',Appassets.name_icon,nameController,
+                  'Enter your Name',false,false,null),
               const SizedBox(height: 12),
 
-              
-              _buildField("Email", Icons.email_outlined, keyboardType: TextInputType.emailAddress),
+
+              buildTextField('Email',Appassets.mail_icon,emailController,
+                  'Enter your Email',true,false,null),
               const SizedBox(height: 12),
 
-              
-              _buildPasswordField(
-                hint: "Password",
-                obscure: _obscurePassword,
-                onToggle: () => setState(() => _obscurePassword = !_obscurePassword),
-              ),
+
+              buildTextField('Password',Appassets.pass_icon,passwordController,
+                  'Enter your Password',false,isObscure,(){
+                setState(() {
+                  isObscure = !isObscure;
+                });
+                  }),
               const SizedBox(height: 12),
 
-              
-              _buildPasswordField(
-                hint: "Confirm Password",
-                obscure: _obscureConfirm,
-                onToggle: () => setState(() => _obscureConfirm = !_obscureConfirm),
-              ),
+
+              buildTextField('Confirm Password',Appassets.pass_icon,confirmController,
+                  'Enter your Password',false,isObscure,(){
+                setState(() {
+                  isObscure = !isObscure;
+                });
+                  }),
               const SizedBox(height: 12),
 
-              
-              _buildField("Phone Number", Icons.phone_outlined, keyboardType: TextInputType.phone),
+
+              buildTextField('Phone Number',Appassets.phone_icon,phoneController,
+                  'Enter your Number',false,false,null),
               const SizedBox(height: 24),
-
-              
-              SizedBox(
-                width: double.infinity,
-                height: 50,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.amber,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                  ),
-                  onPressed: () {},
-                  child: const Text(
-                    "Create Account",
-                    style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
-                ),
-              ),
-
-              const SizedBox(height: 16),
-
-              
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    "Already Have Account ? ",
-                    style: TextStyle(color: Colors.white, fontSize: 13),
-                  ),
-                  GestureDetector(
-                    onTap: () => Navigator.of(context).pushNamed('login'),
-                    child: const Text(
-                      "Login",
-                      style: TextStyle(
-                        color: Colors.amber,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              const SizedBox(height: 16),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text("🇺🇸", style: TextStyle(fontSize: 22)),
-                  Switch(
-                    value: isArabic,
-                    activeColor: Colors.amber,
-                    inactiveThumbColor: Colors.grey,
-                    onChanged: (val) => setState(() => isArabic = val),
-                  ),
-                  const Text("🇪🇬", style: TextStyle(fontSize: 22)),
-                ],
-              ),
-
-              const SizedBox(height: 20),
             ],
           ),
         ),
+
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.amber,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                ),
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    return register();
+                  }
+                },
+                child: const Text(
+                  "Create Account",
+                  style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 16),
+
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  "Already Have Account ? ",
+                  style: TextStyle(color: Colors.white, fontSize: 13),
+                ),
+                GestureDetector(
+                  onTap: () => Navigator.of(context).pushNamed('login'),
+                  child: const Text(
+                    "Login",
+                    style: TextStyle(
+                      color: Colors.amber,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 13,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 16),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text("🇺🇸", style: TextStyle(fontSize: 22)),
+                Switch(
+                  value: isArabic,
+                  activeColor: Colors.amber,
+                  inactiveThumbColor: Colors.grey,
+                  onChanged: (val) => setState(() => isArabic = val),
+                ),
+                const Text("🇪🇬", style: TextStyle(fontSize: 22)),
+              ],
+            ),
+
+            const SizedBox(height: 20),
+          ],
+        ),
       ),
     );
   }
+  void register()async{
+    if(_formKey.currentState?.validate() == true){
+      //todo : register
+      //todo : show loading
+      DialogUtils.showloading(context: context);
+      try {
+        final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text,
+        );
+        //todo : hide loading
+          DialogUtils.hideloading(context: context);
+        //todo : show message
+        DialogUtils.showMessage(context: context, message: 'Register Successfully',
+        posActionName: 'OK',posAction:(){
+          Navigator.of(context).pushNamed('profile');
+            } );
 
-  Widget _buildField(String hint, IconData icon, {TextInputType keyboardType = TextInputType.text}) {
-    return TextField(
-      keyboardType: keyboardType,
-      style: const TextStyle(color: Colors.white, fontSize: 16),
-      decoration: InputDecoration(
-        hintText: hint,
-        hintStyle: const TextStyle(color: Colors.white, fontSize: 16),
-        prefixIcon: Icon(icon, color: Colors.white),
-        filled: true,
-        fillColor: const Color(0xFF1C1C1E),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide.none,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildPasswordField({
-    required String hint,
-    required bool obscure,
-    required VoidCallback onToggle,
-  }) {
-    return TextField(
-      obscureText: obscure,
-      style: const TextStyle(color: Colors.white, fontSize: 16),
-      decoration: InputDecoration(
-        hintText: hint,
-        hintStyle: const TextStyle(color: Colors.white, fontSize: 16),
-        prefixIcon: const Icon(Icons.lock_outline, color: Colors.white),
-        suffixIcon: IconButton(
-          icon: Icon(
-            obscure ? Icons.visibility_off_outlined : Icons.visibility_outlined,
-            color: Colors.white,
-          ),
-          onPressed: onToggle,
-        ),
-        filled: true,
-        fillColor: const Color(0xFF1C1C1E),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide.none,
-        ),
-      ),
-    );
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          //todo : hide loading
+          DialogUtils.hideloading(context: context);
+          //todo : show message
+          DialogUtils.showMessage(context: context,
+              message: 'The password provided is too weak.',
+              posActionName: 'OK',
+          );
+          print('The password provided is too weak.');
+        } else if (e.code == 'email-already-in-use') {
+          //todo : hide loading
+          DialogUtils.hideloading(context: context);
+          //todo : show message
+          DialogUtils.showMessage(context: context,
+            message: 'The account already exists for that email.',
+            posActionName: 'OK',
+          );
+        }
+      } catch (e) {
+        //todo : hide loading
+        DialogUtils.hideloading(context: context);
+        //todo : show message
+        DialogUtils.showMessage(context: context,
+          message: e.toString(),
+          posActionName: 'OK',
+        );
+      }
+    }
   }
 }

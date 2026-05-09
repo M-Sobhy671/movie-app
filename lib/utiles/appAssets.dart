@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 class Appassets {
   static const String forgetPass = 'assets/images/Forget_Password.png';
   static const String mail_icon = 'assets/images/mail.png';
@@ -10,6 +12,11 @@ class Appassets {
   static const String avatar_7 = 'assets/images/avatar_7.png';
   static const String avatar_8 = 'assets/images/avatar_8.png';
   static const String avatar_9 = 'assets/images/avatar_9.png';
+  static const String name_icon = 'assets/images/name_icon.png';
+  static const String pass_icon = 'assets/images/pass_icon.png';
+  static const String phone_icon = 'assets/images/phone_icon.png';
+  static const String pass_eye = 'assets/images/pass_eye.png';
+
 
   static const String splashLogo = 'assets/images/logo1.png';
   static const String routeText = 'assets/images/route1.png';
