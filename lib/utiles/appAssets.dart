@@ -16,6 +16,10 @@ class Appassets {
   static const String pass_icon = 'assets/images/pass_icon.png';
   static const String phone_icon = 'assets/images/phone_icon.png';
   static const String pass_eye = 'assets/images/pass_eye.png';
+  static const String home_icon = 'assets/images/home_icon.png';
+  static const String search_icon = 'assets/images/search_icon.png';
+  static const String explore_icon = 'assets/images/explore_icon.png';
+  static const String profile_icon = 'assets/images/profile_icon.png';
 
 
   static const String splashLogo = 'assets/images/logo1.png';

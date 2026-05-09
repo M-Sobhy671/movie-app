@@ -216,7 +216,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         //todo : show message
         DialogUtils.showMessage(context: context, message: 'Register Successfully',
         posActionName: 'OK',posAction:(){
-          Navigator.of(context).pushNamed('profile');
+          Navigator.of(context).pushNamed('home');
             } );
 
       } on FirebaseAuthException catch (e) {
