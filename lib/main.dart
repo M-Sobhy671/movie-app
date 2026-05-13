@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/firebase_options.dart';
+import 'package:movie_app/screens/Home/home_view.dart';
 import 'package:movie_app/screens/homeScreen.dart';
 import 'screens/splash.dart';
 import 'screens/OnBoarding/onBoarding.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
         'forgetPass' : (context) => Forgetpass(),
         'profile' : (context) => Profile(),
         'home' : (context) => Homescreen(),
-
+        'home_view': (context) =>  HomeView(), 
       },
     );
   }

@@ -36,4 +36,11 @@ class Appassets {
   static const String overlay5 = 'assets/images/overlay5.png';
   static const String onboarding6= 'assets/images/onboarding6.png';
   static const String overlay6 = 'assets/images/overlay6.png';
+
+  static const String watchnow = 'assets/images/watch_now.png';
+  static const String avilable = 'assets/images/available_now.png';
+  static const String homeicon = 'assets/images/homeicon.png';
+  static const String profile = 'assets/images/profileicon.png'; 
+  static const String nav = 'assets/images/Vector.png';
+  static const String searchicon = 'assets/images/searchicon.png';
 }
