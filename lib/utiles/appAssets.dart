@@ -46,4 +46,12 @@ class Appassets {
   static const String screenShot_1 = 'assets/images/screenShot_1.png';
   static const String screenShot_2 = 'assets/images/screenShot_2.png';
   static const String screenShot_3 = 'assets/images/screenShot_3.png';
+
+  static const String movie_1 = 'assets/images/movie_1.png';
+  static const String movie_2 = 'assets/images/movie_2.png';
+  static const String movie_3 = 'assets/images/movie_3.png';
+  static const String movie_4 = 'assets/images/movie_4.png';
+  static const String movie_5 = 'assets/images/movie_5.png';
+  static const String movie_6 = 'assets/images/movie_6.png';
+  static const String movie_7 = 'assets/images/movie_7.png';
 }
