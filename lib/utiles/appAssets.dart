@@ -20,6 +20,10 @@ class Appassets {
   static const String search_icon = 'assets/images/search_icon.png';
   static const String explore_icon = 'assets/images/explore_icon.png';
   static const String profile_icon = 'assets/images/profile_icon.png';
+  static const String play_icon = 'assets/images/play_icon.png';
+  static const String like_icon = 'assets/images/like_icon.png';
+  static const String time_icon = 'assets/images/time_icon.png';
+  static const String fav_icon = 'assets/images/fav_icon.png';
 
 
   static const String splashLogo = 'assets/images/logo1.png';
@@ -39,8 +43,7 @@ class Appassets {
 
   static const String watchnow = 'assets/images/watch_now.png';
   static const String avilable = 'assets/images/available_now.png';
-  static const String homeicon = 'assets/images/homeicon.png';
-  static const String profile = 'assets/images/profileicon.png'; 
-  static const String nav = 'assets/images/Vector.png';
-  static const String searchicon = 'assets/images/searchicon.png';
+  static const String screenShot_1 = 'assets/images/screenShot_1.png';
+  static const String screenShot_2 = 'assets/images/screenShot_2.png';
+  static const String screenShot_3 = 'assets/images/screenShot_3.png';
 }
