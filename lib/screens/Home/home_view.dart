@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:movie_app/screens/Home/movie_details.dart';
 import 'package:movie_app/screens/details.dart';
 import 'package:movie_app/widgets/movie_item.dart';
 import 'package:movie_app/widgets/movie_stack.dart';
@@ -17,22 +18,24 @@ class _HomeViewState extends State<HomeView> {
   int currentIndex = 0;
   int currentMovieIndex = 0;
 
-  List<String> movies = [
-    "assets/images/onboarding2.png",
-    "assets/images/onboarding3.png",
-    "assets/images/onboarding4.png",
-    "assets/images/onboarding2.png",
-    "assets/images/onboarding3.png",
+  List<Map<String,String>> movies = [
+    {"name": "AVENTURES","image": "assets/images/onboarding2.png"},
+    {"name": "OPPENHEIMER","image": "assets/images/onboarding3.png"},
+    {"name": "BAD BOYS","image": "assets/images/onboarding4.png"},
+    {"name": "AVENTURES","image": "assets/images/onboarding2.png"},
+    {"name": "OPPENHEIMER","image": "assets/images/onboarding3.png"},
   ];
 
   late double width;
   late double Function(double) w;
 
-  void goToDetails() {
+
+  
+  void goToDetails(String imagePath, String namePath) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => const DetailsScreen(),
+        builder: (_) => MovieDetails(movieImage: imagePath,movieName:namePath ,),
       ),
     );
   }
@@ -58,7 +61,7 @@ class _HomeViewState extends State<HomeView> {
                       sigmaY: 10,
                     ),
                     child: Image.asset(
-                      movies[currentMovieIndex],
+                      movies[currentMovieIndex]['image']!,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -100,11 +103,14 @@ class _HomeViewState extends State<HomeView> {
                   SizedBox(height: w(0.04)),
 
                   MovieStack(
-                    movies: movies,
+                    movies: movies.map((item) => item['image']!).toList(),
                     currentIndex: currentMovieIndex,
                     w: w,
-                    onChanged: (i) => setState(() => currentMovieIndex = i),
-                    onTap: goToDetails,
+                    onChanged:(index){ setState(() => currentMovieIndex = index);},
+                    onTap :() => goToDetails(
+                      movies[currentMovieIndex]['image']!,
+                      movies[currentMovieIndex]['name']!
+                    ),
                   ),
 
                   SizedBox(height: w(0.03)),
@@ -127,10 +133,10 @@ class _HomeViewState extends State<HomeView> {
                       children: [
                         const Text(
                           "Action",
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: Colors.white,fontSize: 20),
                         ),
                         InkWell(
-                          onTap: goToDetails,
+                          onTap:(){},
                           child: Row(
                             children: [
                               Text(
@@ -141,7 +147,7 @@ class _HomeViewState extends State<HomeView> {
                                 ),
                               ),
                               const Icon(
-                                Icons.arrow_forward_ios,
+                                Icons.arrow_forward_outlined,
                                 size: 14,
                                 color: Color(0xFFFFBB3B),
                               )
@@ -161,9 +167,12 @@ class _HomeViewState extends State<HomeView> {
                       itemCount: movies.length,
                       itemBuilder: (context, index) {
                         return MovieItem(
-                          image: movies[index],
+                          image: movies[index]["image"]!,
                           w: w,
-                          onTap: goToDetails,
+                          onTap :() => goToDetails(
+                            movies[index]['image']!,
+                            movies[index]['name']!
+                          ),
                         );
                       },
                     ),
