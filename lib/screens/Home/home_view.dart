@@ -1,6 +1,9 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:movie_app/screens/Home/explore_view.dart';
 import 'package:movie_app/screens/Home/movie_details.dart';
+import 'package:movie_app/screens/Home/profile_view.dart';
+import 'package:movie_app/screens/Home/search_view.dart';
 import 'package:movie_app/screens/details.dart';
 import 'package:movie_app/widgets/movie_item.dart';
 import 'package:movie_app/widgets/movie_stack.dart';
@@ -17,6 +20,8 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   int currentIndex = 0;
   int currentMovieIndex = 0;
+
+
 
   List<Map<String,String>> movies = [
     {"name": "AVENTURES","image": "assets/images/onboarding2.png"},
@@ -181,17 +186,6 @@ class _HomeViewState extends State<HomeView> {
                   SizedBox(height: w(0.12)),
                 ],
               ),
-            ),
-          ),
-
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: NavBar(
-              w: w,
-              currentIndex: currentIndex,
-              onTap: (i) => setState(() => currentIndex = i),
             ),
           ),
         ],

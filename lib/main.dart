@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/firebase_options.dart';
 import 'package:movie_app/screens/Home/home_view.dart';
 import 'package:movie_app/screens/homeScreen.dart';
+import 'package:movie_app/widgets/navbar.dart';
 import 'screens/splash.dart';
 import 'screens/OnBoarding/onBoarding.dart';
 import 'screens/login.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: 'home_view',
+      initialRoute: 'navBar',
       routes: {
         'splash' : (context) => SplashView(),
         'onBoarding' : (context) => Onboarding1(),
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
         'register' : (context) => RegisterScreen(),
         'forgetPass' : (context) => Forgetpass(),
         'profile' : (context) => Profile(),
+        'navBar' : (context) => const NavBar(),
         'home' : (context) => Homescreen(),
         'home_view': (context) =>  HomeView(), 
       },
